@@ -2,20 +2,18 @@ import { render } from "@testing-library/react";
 import { Appointment } from "../src/components/Appointment";
 
 describe("Appointment", () => {
-  it("renders the customer first name", () => {
-    const customer = { firstName: "Ashley" };
+  let container: HTMLElement;
+  let customer: { firstName: string };
 
-    const component = <Appointment customer={customer} />;
-    const { container } = render(component);
-
+  it("renders the customer first name (Ashley)", () => {
+    customer = { firstName: "Ashley" };
+    container = render(<Appointment customer={customer} />).container;
     expect(container.textContent).toMatch("Ashley");
   });
-  it("renders the customer first name", () => {
-    const customer = { firstName: "Jordan" };
 
-    const component = <Appointment customer={customer} />;
-    const { container } = render(component);
-
+  it("renders the customer first name (Jordan)", () => {
+    customer = { firstName: "Jordan" };
+    container = render(<Appointment customer={customer} />).container;
     expect(container.textContent).toMatch("Jordan");
   });
 });
