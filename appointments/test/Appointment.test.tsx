@@ -3,13 +3,14 @@ import { Appointment } from "../src/components/Appointment";
 
 type CustomerType = {
   firstName: string;
+  lastName: string;
 };
 
 describe("Appointment", () => {
   let customer: CustomerType;
 
   beforeEach(() => {
-    customer = { firstName: "" };
+    customer = { firstName: "", lastName: "" };
   });
 
   /*
@@ -21,12 +22,13 @@ describe("Appointment", () => {
   docs: https://vitest.dev/api/#test-each
   */
 
-  it.each(["Ashley", "Jordan", "Taylor"])(
-    "renders the customer first name (%s)",
-    (firstName) => {
+  it.each([["Ashley", "Doe"]])(
+    "renders the customers' full name (%s, %s)",
+    (firstName, lastName) => {
       customer.firstName = firstName;
+      customer.lastName = lastName;
       const { container } = render(<Appointment customer={customer} />);
-      expect(container.textContent).toMatch(firstName);
+      expect(container.textContent).toMatch(`${firstName} ${lastName}`);
     }
   );
 });
