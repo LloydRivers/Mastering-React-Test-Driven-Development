@@ -7,19 +7,26 @@ type CustomerType = {
 
 describe("Appointment", () => {
   let customer: CustomerType;
+
   beforeEach(() => {
     customer = { firstName: "" };
   });
 
-  it("renders the customer first name (Ashley)", () => {
-    customer.firstName = "Ashley";
-    const { container } = render(<Appointment customer={customer} />);
-    expect(container.textContent).toMatch("Ashley");
-  });
+  /*
+  Commenting here as documentation on the commit:
+  signature: it.each(testCases)(testName, testFunction);
 
-  it("renders the customer first name (Jordan)", () => {
-    customer.firstName = "Jordan";
-    const { container } = render(<Appointment customer={customer} />);
-    expect(container.textContent).toMatch("Jordan");
-  });
+  parameter %s: string
+
+  docs: https://vitest.dev/api/#test-each
+  */
+
+  it.each(["Ashley", "Jordan", "Taylor"])(
+    "renders the customer first name (%s)",
+    (firstName) => {
+      customer.firstName = firstName;
+      const { container } = render(<Appointment customer={customer} />);
+      expect(container.textContent).toMatch(firstName);
+    }
+  );
 });
