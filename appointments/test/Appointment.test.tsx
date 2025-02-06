@@ -1,9 +1,11 @@
 import { render } from "@testing-library/react";
 import { Appointment } from "../src/components/Appointment";
-
+type CustomerType = {
+  firstName: string;
+};
 describe("Appointment", () => {
   let container: HTMLElement;
-  let customer: { firstName: string };
+  let customer: CustomerType;
 
   it("renders the customer first name (Ashley)", () => {
     customer = { firstName: "Ashley" };
